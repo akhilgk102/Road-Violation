@@ -1,0 +1,38 @@
+{%extends 'user_base.html'%}
+{%load static%}
+{%block title%} All Violations {%endblock%}
+
+
+
+{%block main_block%}
+
+<div class="container">
+    <div class="row ">
+        <h3 class="text-center mt-5 mb-5">All Violations</h3>
+
+        {%for v in all_violations%}
+
+        <div class="col-lg-3">
+            <div class="card h-100">
+                {%if v.image%}
+                <img src="{{v.image.url}}" class="card-img-top " alt="..." style="height: 45%;">
+                {%endif%}
+                <div class="card-body">
+                    <p class="card-text fw-semibold">Description: {{v.description}}</p>
+                    <p class="card-text fw-semibold">Violation Time: {{v.created_at}}</p>
+                    <div class="row">
+
+                        <div class="col-6 d-grid"><a href="{%url 'violation-delete' v.id%}" class="btn btn-danger ">Delete</a></div>
+                        <div class="col-6 d-grid"><a href="{%url 'violation-update' v.id%}" class="btn btn-primary ">Update</a></div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {%endfor%}
+
+    </div>
+</div>
+
+{%endblock%}
